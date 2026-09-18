@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0A1832" />
+    <title>WhatsApp | Agravo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="dashboard.html" aria-label="Agravo, dashboard">
+          <img src="assets/logo.png" alt="Agravo" />
+          <svg class="brand-mark" width="26" height="23" viewBox="0 0 26 23" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M25.9524 22.9146L26 23H20.3583L20.3433 22.9675L17.0306 15.7841C17.2506 15.5727 17.479 15.3443 17.7371 15.0821C18.7279 14.0758 19.2185 13.4188 20.0474 12.3487L25.9524 22.9146ZM22.7627 6.8811C22.7627 6.8811 20.8776 10.0014 19.4558 11.8363C18.6167 12.9193 18.1535 13.5409 17.1961 14.5133C16.3468 15.3757 15.8487 15.8466 14.8812 16.5638C13.9634 17.2442 13.3864 17.531 12.401 18.1016C11.3848 18.6901 10.8047 19.0027 9.75546 19.5255C9.28748 19.7587 8.71823 20.0214 8.1796 20.2628C7.00259 20.7902 6.04243 21.736 5.51156 22.9429H0L1.58629 20.1198C2.47022 18.5467 3.97376 17.4793 5.6769 17.0194C6.69817 16.7436 7.27254 16.5868 8.26734 16.222C9.032 15.9417 9.44713 15.7464 10.1964 15.4246C11.2377 14.9774 11.8257 14.7337 12.8419 14.2285C14.1872 13.5598 14.9432 13.1748 16.204 12.3489C17.3495 11.5987 17.9464 11.1047 19.0149 10.2416C20.5416 9.00835 22.7627 6.8811 22.7627 6.8811ZM12.787 7.74881L12.7814 7.76071L9.37202 14.9172C8.91274 15.1169 8.55852 15.2694 8.00952 15.4708C7.04704 15.8237 6.4988 15.9736 5.48206 16.2481C4.56674 16.4952 3.69584 16.9042 2.92758 17.4656L12.6843 0.188558L12.787 0.00667464V7.74881ZM13.3311 0.189337L18.4873 9.65597C17.4506 10.4937 16.882 10.9611 15.7912 11.6756C15.5972 11.8027 15.4156 11.9186 15.2422 12.0268L13.234 7.93214L13.228 7.92002V0L13.3311 0.189337Z" fill="#0A1832"/>
+          </svg>
+        </a>
+        <button class="sidebar-toggle" type="button" id="sidebar-toggle" aria-label="Fechar barra lateral" aria-expanded="true">
+          <svg viewBox="0 0 16 16" aria-hidden="true"><path d="m10 3-5 5 5 5" /></svg>
+        </button>
+        <nav class="main-nav" aria-label="Menu principal">
+          <a class="nav-item" href="dashboard.html">
+            <span class="nav-icon home-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 0C13.3257 0 14.5974 0.526209 15.5362 1.46277L23.1211 9.05289C23.4007 9.33085 23.6221 9.66179 23.773 10.0261C23.9238 10.3904 24.0011 10.7809 24 11.1752V20.9983C23.9999 21.7943 23.6836 22.5577 23.1211 23.1206C22.5585 23.6835 21.7956 24 21 24H3.00001C2.20444 24 1.44151 23.6835 0.878917 23.1206C0.316384 23.6835 9.70567e-05 21.7943 1.18769e-05 20.9983V11.1752C-0.00110237 10.7809 0.0761962 10.3904 0.227062 10.0261C0.37795 9.66179 0.599343 9.33085 0.878917 9.05289L8.4639 1.46277C9.4026 0.526215 10.6744 6.51467e-06 12 0ZM12 15.0607C11.2045 15.0607 10.4415 15.3767 9.87892 15.9394C9.31627 16.5024 9 17.2664 9 18.0625V23.9927H15V18.0625C15 17.2664 14.6837 16.5024 14.1211 15.9394C13.5585 15.3767 12.7955 15.0607 12 15.0607Z" fill="#0A1832" /></svg></span><span>Dashboard</span>
+          </a>
+          <a class="nav-item" href="processes.html">
+            <span class="nav-icon processes-icon"><svg width="20" height="20" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M19 2H12.472C12.3173 2.00102 12.1645 1.96682 12.025 1.9L8.869 0.316C8.45239 0.108545 7.9934 0.000386341 7.528 0H5C3.6744 0.00158786 2.40356 0.528882 1.46622 1.46622C0.528882 2.40356 0.00158786 3.6744 0 5L0 17C0.00158786 18.3256 0.528882 19.5964 1.46622 20.5338C2.40356 21.4711 3.6744 21.9984 5 22H19C20.3256 21.9984 21.5964 21.4711 22.5338 20.5338C23.4711 19.5964 23.9984 18.3256 24 17V7C23.9984 5.6744 23.4711 4.40356 22.5338 3.46622C21.5964 2.52888 20.3256 2.00159 19 2ZM5 2H7.528C7.68266 1.99898 7.83552 2.03318 7.975 2.1L11.131 3.679C11.5472 3.88819 12.0062 3.99806 12.472 4H19C19.598 4.00098 20.1821 4.18067 20.6773 4.51601C21.1725 4.85135 21.5561 5.32704 21.779 5.882L2 5.994V5C2 4.20435 2.31607 3.44129 2.87868 2.87868C3.44129 2.31607 4.20435 2 5 2ZM19 20H5C4.20435 20 3.44129 19.6839 2.87868 19.1213C2.31607 18.5587 2 17.7956 2 17V7.994L22 7.881V17C22 17.7956 21.6839 18.5587 21.1213 19.1213C20.5587 19.6839 19.7956 20 19 20Z" fill="#083A6B"/></svg></span><span>Processos</span>
+          </a>
+          <a class="nav-item" href="#financeiro">
+            <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v16M16 8.5c0-1.4-1.6-2.5-4-2.5S8 7.1 8 8.5 9.6 11 12 11s4 1.1 4 2.5-1.6 2.5-4 2.5-4-1.1-4-2.5" /></svg></span><span>Financeiro</span>
+          </a>
+          <a class="nav-item active" href="whatsapp.html">
+            <span class="nav-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.5 11.5a7.5 7.5 0 0 1-11 6.6L5 19l.9-3.3a7.5 7.5 0 1 1 13.6-4.2Z" /><path d="M9.2 9.2c.3 2 1.7 3.5 3.6 4.2.4.1.7-.1 1-.4l.5-.7" /></svg></span><span>WhatsApp</span>
+          </a>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="profile">
+            <div class="avatar">CR</div>
+            <div>
+              <strong>Cássio Ribeiro</strong>
+              <span>controlevsm2@gmail.com</span>
+            </div>
+            <button class="profile-menu" type="button" aria-label="Abrir menu do perfil">•••</button>
+          </div>
+          <button class="logout" type="button" id="logout">Sair da conta</button>
+        </div>
+      </aside>
+
+      <section class="workspace">
+        <header class="topbar">
+          <button class="menu-toggle" type="button" id="menu-toggle" aria-label="Abrir menu">
+            <span></span><span></span><span></span>
+          </button>
+          <div class="breadcrumbs"><span>Início</span><b>/</b><strong>WhatsApp</strong></div>
+          <div class="topbar-actions">
+            <button class="icon-button" type="button" aria-label="Notificações">♧<i></i></button>
+            <div class="top-avatar">CR</div>
+          </div>
+        </header>
+
+        <div class="content whatsapp-content">
+          <section class="whatsapp-shell">
+            <aside class="conversation-list">
+              <label class="conversation-search"><span>⌕</span><input id="conversation-search" type="search" placeholder="Buscar conversa..." /></label>
+              <div id="conversation-items"></div>
+            </aside>
+            <section class="chat-panel">
+              <header class="chat-header">
+                <div class="contact-avatar" id="chat-avatar">VP</div>
+                <div><strong id="chat-name">Valter Peters</strong><span id="chat-phone">+55 (44) 99769-5413</span></div>
+                <div class="chat-header-actions"><button type="button" aria-label="Ver contato">◉</button><span class="chat-status">Aberta</span></div>
+              </header>
+              <div class="message-area" id="message-area"></div>
+              <form class="message-composer" id="message-form">
+                <button type="button" aria-label="Adicionar anexo">＋</button>
+                <input id="message-input" autocomplete="off" placeholder="Digite aqui..." />
+                <button class="send-button" type="submit" aria-label="Enviar mensagem">➤</button>
+              </form>
+            </section>
+          </section>
+        </div>
+      </section>
+    </main>
+    <script src="dashboard.js"></script>
+    <script src="whatsapp.js"></script>
+  </body>
+</html>
