@@ -18,43 +18,37 @@ const processNumbers = [
 
 linkedCount.textContent = `${processNumbers.length} processos`;
 processNumbers.forEach((number, index) => {
-  const item = document.createElement("article");
+  const item = document.createElement("tr");
   item.className = "linked-process";
-  const info = document.createElement("div");
-  info.className = "linked-process-info";
-  info.innerHTML = `
-    <span class="linked-process-mark" aria-hidden="true">✣</span>
-    <div>
-      <strong>${number}</strong>
-      <span>${index === 0 ? "Petição Inicial · Ação Monitória" : "Acompanhamento processual"}</span>
-    </div>
-  `;
-
-  const actions = document.createElement("div");
+  const processCell = document.createElement("td");
+  processCell.className = "linked-process-number";
+  const numberLabel = document.createElement("strong");
+  numberLabel.textContent = number;
+  processCell.append(numberLabel);
+  const typeCell = document.createElement("td");
+  typeCell.textContent = index === 0 ? "Petição Inicial · Ação Monitória" : "Acompanhamento processual";
+  const statusCell = document.createElement("td");
+  const status = document.createElement("span");
+  status.className = "linked-status";
+  status.textContent = "Ativo";
+  statusCell.append(status);
+  const actions = document.createElement("td");
   actions.className = "linked-process-actions";
-  actions.innerHTML = `
-    <button type="button" class="linked-process-delete" aria-label="Excluir processo ${number}" title="Excluir processo">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7V4h6v3" />
-      </svg>
-    </button>
-    <button type="button" class="linked-process-toggle" aria-label="Recolher processo">−</button>
-  `;
+  const deleteButton = document.createElement("button");
+  deleteButton.type = "button";
+  deleteButton.className = "linked-process-delete";
+  deleteButton.setAttribute("aria-label", `Excluir processo ${number}`);
+  deleteButton.title = "Excluir processo";
+  deleteButton.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 14h10l1-14M9 7V4h6v3" /></svg>';
+  actions.append(deleteButton);
+  item.append(processCell, typeCell, statusCell, actions);
 
-  item.append(info, actions);
-
-  item.querySelector(".linked-process-toggle").addEventListener("click", (event) => {
-    event.stopPropagation();
-    item.classList.toggle("is-collapsed");
-    event.currentTarget.textContent = item.classList.contains("is-collapsed") ? "+" : "−";
-  });
-
-  item.querySelector(".linked-process-delete").addEventListener("click", (event) => {
+  deleteButton.addEventListener("click", (event) => {
     event.stopPropagation();
     if (!window.confirm(`Excluir o processo ${number}?`)) return;
 
     item.remove();
-    const remaining = linkedList.querySelectorAll(".linked-process").length;
+    const remaining = linkedList.querySelectorAll("tr.linked-process").length;
     linkedCount.textContent = `${remaining} processo${remaining === 1 ? "" : "s"}`;
   });
 

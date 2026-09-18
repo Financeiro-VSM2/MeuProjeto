@@ -1,15 +1,39 @@
 const sidebar = document.querySelector("#sidebar");
-const menuToggle = document.querySelector("#menu-toggle");
 const sidebarToggle = document.querySelector("#sidebar-toggle");
 const search = document.querySelector("#process-search");
 const filter = document.querySelector("#process-filter");
 const rows = [...document.querySelectorAll("#process-list tr")];
 const emptyState = document.querySelector("#empty-state");
 const sidebarStateKey = "agravo.sidebar.collapsed";
+const themeStateKey = "agravo.theme";
+const themeToggle = document.querySelector("#theme-toggle");
+const profileTrigger = document.querySelector("#profile-trigger");
+const profileDropdown = document.querySelector("#profile-dropdown");
 
-function isMobileLayout() {
-  return window.matchMedia("(max-width: 700px)").matches;
+function syncTheme(isDark) {
+  document.body.classList.toggle("dark-theme", isDark);
+  themeToggle?.setAttribute("aria-pressed", String(isDark));
+  themeToggle?.setAttribute("aria-label", isDark ? "Ativar modo claro" : "Ativar modo escuro");
 }
+
+syncTheme(window.localStorage.getItem(themeStateKey) === "dark");
+themeToggle?.addEventListener("click", () => {
+  const isDark = !document.body.classList.contains("dark-theme");
+  syncTheme(isDark);
+  window.localStorage.setItem(themeStateKey, isDark ? "dark" : "light");
+});
+
+profileTrigger?.addEventListener("click", () => {
+  const isOpen = profileDropdown?.hasAttribute("hidden") === false;
+  if (!profileDropdown) return;
+  profileDropdown.toggleAttribute("hidden", isOpen);
+  profileTrigger.setAttribute("aria-expanded", String(!isOpen));
+});
+
+document.querySelector("#settings")?.addEventListener("click", () => {
+  profileDropdown?.setAttribute("hidden", "");
+  profileTrigger?.setAttribute("aria-expanded", "false");
+});
 
 function syncSidebarToggle() {
   if (!sidebar || !sidebarToggle) return;
@@ -18,34 +42,15 @@ function syncSidebarToggle() {
   sidebarToggle.setAttribute("aria-label", collapsed ? "Abrir barra lateral" : "Fechar barra lateral");
 }
 
-if (sidebar && !isMobileLayout() && window.localStorage.getItem(sidebarStateKey) === "true") {
+if (sidebar && window.localStorage.getItem(sidebarStateKey) === "true") {
   sidebar.classList.add("collapsed");
 }
 syncSidebarToggle();
-
-menuToggle?.addEventListener("click", () => {
-  sidebar.classList.toggle("open");
-});
 
 sidebarToggle?.addEventListener("click", () => {
   const collapsed = sidebar.classList.toggle("collapsed");
   window.localStorage.setItem(sidebarStateKey, String(collapsed));
   syncSidebarToggle();
-});
-
-window.addEventListener("resize", () => {
-  if (isMobileLayout()) {
-    sidebar?.classList.remove("collapsed");
-  } else if (window.localStorage.getItem(sidebarStateKey) === "true") {
-    sidebar?.classList.add("collapsed");
-  }
-  syncSidebarToggle();
-});
-
-document.querySelectorAll(".nav-item").forEach((item) => {
-  item.addEventListener("click", () => {
-    sidebar.classList.remove("open");
-  });
 });
 
 rows.forEach((row) => {
@@ -79,7 +84,7 @@ function filterRows() {
 search?.addEventListener("input", filterRows);
 filter?.addEventListener("change", filterRows);
 
-document.querySelector("#logout").addEventListener("click", () => {
+document.querySelector("#logout")?.addEventListener("click", () => {
   sessionStorage.removeItem("agravo.access_token");
   window.location.href = "index.html";
 });

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Financeiro | Agravo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="dashboard.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" id="sidebar">
+        <a class="brand" href="dashboard.html" aria-label="Agravo, dashboard"><img src="assets/logo.png" alt="Agravo" /></a>
+        <button class="sidebar-toggle" type="button" id="sidebar-toggle" aria-label="Fechar barra lateral" aria-expanded="true"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="m10 3-5 5 5 5" /></svg></button>
+        <nav class="main-nav" aria-label="Menu principal">
+          <a class="nav-item" href="dashboard.html"><span class="nav-icon">⌂</span><span>Dashboard</span></a>
+          <a class="nav-item" href="processes.html"><span class="nav-icon">▣</span><span>Processos</span></a>
+          <a class="nav-item active" href="financeiro.html" aria-current="page"><span class="nav-icon">¤</span><span>Financeiro</span></a>
+          <a class="nav-item" href="whatsapp.html"><span class="nav-icon">◌</span><span>WhatsApp</span></a>
+        </nav>
+        <div class="sidebar-footer">
+          <div class="profile-wrap"><button class="profile-trigger" type="button" id="profile-trigger" aria-label="Abrir menu do perfil" aria-expanded="false"><span class="avatar">CR</span><span class="profile-copy"><strong>Cássio Ribeiro</strong><span>controlevsm2@gmail.com</span></span></button><div class="profile-dropdown" id="profile-dropdown" hidden><button type="button" id="settings">Configurações</button><button type="button" id="logout">Sair da conta</button></div></div>
+        </div>
+      </aside>
+      <section class="workspace">
+        <header class="topbar"><div class="breadcrumbs"><a href="dashboard.html">Início</a><b>/</b><strong>Financeiro</strong></div><div class="topbar-actions"><button class="icon-button" type="button" aria-label="Notificações">♧</button><button class="theme-toggle" type="button" id="theme-toggle" aria-label="Ativar modo escuro" aria-pressed="false"><span class="theme-toggle-track"><span class="theme-toggle-thumb"></span></span></button></div></header>
+        <div class="content finance-content">
+          <div class="page-heading"><div><p class="kicker">Gestão financeira</p><h1>Financeiro</h1><p class="subtitle">Controle entradas, saídas, contas e resultado da operação.</p></div><button class="primary-button" type="button" id="new-entry">＋ Novo lançamento</button></div>
+          <div class="finance-tabs" role="tablist" aria-label="Seções financeiras"><button class="finance-tab active" type="button" role="tab" aria-selected="true" data-panel="entries">Lançamentos</button><button class="finance-tab" type="button" role="tab" aria-selected="false" data-panel="accounts">Plano de contas</button><button class="finance-tab" type="button" role="tab" aria-selected="false" data-panel="dre">DRE</button></div>
+          <form class="finance-entry-form" id="entry-form" hidden><input name="date" type="date" required /><input name="description" placeholder="Descrição" required /><select name="account" required><option value="">Plano de contas</option><option>Receita de honorários</option><option>Receita de acordos</option><option>Custas e taxas</option><option>Despesas administrativas</option><option>Tecnologia e sistemas</option></select><select name="type" required><option value="entrada">Entrada</option><option value="saida">Saída</option></select><input name="amount" placeholder="Valor" required /><button class="primary-button" type="submit">Salvar lançamento</button></form>
+          <section class="finance-panel" id="entries" role="tabpanel">
+            <div class="finance-summary"><div><span>Saldo atual</span><strong>R$ 18.420,00</strong></div><div><span>Entradas no período</span><strong class="finance-positive">R$ 32.800,00</strong></div><div><span>Saídas no período</span><strong class="finance-negative">R$ 14.380,00</strong></div><div><span>Resultado</span><strong>R$ 18.420,00</strong></div></div>
+            <div class="finance-card"><div class="finance-card-heading"><div><p class="kicker">Movimentações</p><h2>Entradas e saídas</h2></div><div class="finance-filters"><input id="entry-search" type="search" placeholder="Buscar lançamento" /><select id="entry-type" aria-label="Filtrar por tipo"><option value="all">Todos</option><option value="entrada">Entradas</option><option value="saida">Saídas</option></select></div></div><div class="finance-table-wrap"><table class="finance-table"><thead><tr><th>Data</th><th>Descrição</th><th>Conta</th><th>Tipo</th><th>Valor</th><th>Status</th></tr></thead><tbody id="entries-list"><tr data-type="entrada"><td>18/09/2026</td><td><strong>Honorários recebidos</strong><small>Processo 0007285-83.2024</small></td><td>Receita de honorários</td><td><span class="finance-badge entrada">Entrada</span></td><td class="finance-positive">R$ 4.297,90</td><td><span class="finance-status paid">Confirmado</span></td></tr><tr data-type="saida"><td>17/09/2026</td><td><strong>Custas processuais</strong><small>Protocolo judicial</small></td><td>Custas e taxas</td><td><span class="finance-badge saida">Saída</span></td><td class="finance-negative">R$ 850,00</td><td><span class="finance-status paid">Confirmado</span></td></tr><tr data-type="saida"><td>15/09/2026</td><td><strong>Software jurídico</strong><small>Assinatura mensal</small></td><td>Despesas administrativas</td><td><span class="finance-badge saida">Saída</span></td><td class="finance-negative">R$ 299,90</td><td><span class="finance-status pending">Pendente</span></td></tr></tbody></table></div></div>
+          </section>
+          <section class="finance-panel" id="accounts" role="tabpanel" hidden><div class="finance-card"><div class="finance-card-heading"><div><p class="kicker">Estrutura contábil</p><h2>Plano de contas</h2><p class="subtitle">Cadastre e organize as contas usadas nos lançamentos e na DRE.</p></div><button class="outline-button" type="button" id="new-account">＋ Nova conta</button></div><div class="accounts-grid"><div><strong>1. Receitas</strong><span>Grupo de resultado</span><b>1.1 Receita de honorários</b><b>1.2 Receita de acordos</b></div><div><strong>2. Despesas</strong><span>Grupo de resultado</span><b>2.1 Custas e taxas</b><b>2.2 Despesas administrativas</b><b>2.3 Tecnologia e sistemas</b></div><div><strong>3. Ativo</strong><span>Grupo patrimonial</span><b>3.1 Caixa e bancos</b><b>3.2 Contas a receber</b></div><div><strong>4. Passivo</strong><span>Grupo patrimonial</span><b>4.1 Obrigações a pagar</b></div></div></div></section>
+          <section class="finance-panel" id="dre" role="tabpanel" hidden><div class="finance-card"><div class="finance-card-heading"><div><p class="kicker">Demonstrativo</p><h2>DRE gerencial</h2><p class="subtitle">Resultado por grupo de contas no período selecionado.</p></div><select aria-label="Período da DRE"><option>Setembro de 2026</option><option>Agosto de 2026</option></select></div><div class="dre-list"><div><span>Receita bruta</span><strong class="finance-positive">R$ 32.800,00</strong></div><div><span>(-) Custas e taxas</span><strong class="finance-negative">R$ 850,00</strong></div><div><span>(-) Despesas administrativas</span><strong class="finance-negative">R$ 299,90</strong></div><div class="dre-total"><span>Resultado operacional</span><strong>R$ 31.650,10</strong></div></div></div></section>
+        </div>
+      </section>
+    </main>
+    <script src="dashboard.js"></script><script src="financeiro.js"></script>
+  </body>
+</html>

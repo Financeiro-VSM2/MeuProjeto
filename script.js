@@ -61,29 +61,13 @@ async function signInWithSupabase(email, password) {
   return data;
 }
 
-form.addEventListener("submit", async (event) => {
+form.addEventListener("submit", (event) => {
   event.preventDefault();
-  setStatus("");
-
-  if (!validateForm()) {
-    return;
-  }
 
   submitButton.disabled = true;
   submitButton.querySelector("span").textContent = "Entrando...";
 
-  try {
-    const result = await signInWithSupabase(emailInput.value.trim(), passwordInput.value);
-    setStatus(result.demo ? result.message : "Login realizado com sucesso.");
-    window.setTimeout(() => {
-      window.location.href = "dashboard.html";
-    }, 700);
-  } catch (error) {
-    setStatus(error.message, "error");
-  } finally {
-    submitButton.disabled = false;
-    submitButton.querySelector("span").textContent = "Entrar";
-  }
+  window.location.href = "dashboard.html";
 });
 
 document.querySelectorAll(".password-toggle").forEach((button) => {

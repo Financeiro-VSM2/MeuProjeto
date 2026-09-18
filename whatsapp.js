@@ -21,6 +21,10 @@ const messages = [
 const items = document.querySelector("#conversation-items");
 const area = document.querySelector("#message-area");
 
+if (!items || !area) {
+  throw new Error("WhatsApp interface could not be initialized.");
+}
+
 function renderConversations(filter = "") {
   items.innerHTML = "";
   conversations
@@ -29,7 +33,20 @@ function renderConversations(filter = "") {
       const item = document.createElement("button");
       item.type = "button";
       item.className = `conversation-item${index === 2 ? " active" : ""}`;
-      item.innerHTML = `<span class="conversation-avatar">${conversation.initials}</span><span class="conversation-copy"><strong>${conversation.name}</strong><span>✓ ${conversation.preview}</span></span><time class="conversation-date">${conversation.date}</time>`;
+      const avatar = document.createElement("span");
+      avatar.className = "conversation-avatar";
+      avatar.textContent = conversation.initials;
+      const copy = document.createElement("span");
+      copy.className = "conversation-copy";
+      const name = document.createElement("strong");
+      name.textContent = conversation.name;
+      const preview = document.createElement("span");
+      preview.textContent = `✓ ${conversation.preview}`;
+      copy.append(name, preview);
+      const date = document.createElement("time");
+      date.className = "conversation-date";
+      date.textContent = conversation.date;
+      item.append(avatar, copy, date);
       item.addEventListener("click", () => {
         document.querySelectorAll(".conversation-item").forEach((current) => current.classList.remove("active"));
         item.classList.add("active");
@@ -45,7 +62,10 @@ function renderMessages() {
   messages.forEach((message) => {
     const bubble = document.createElement("div");
     bubble.className = `message ${message.type}`;
-    bubble.innerHTML = `${message.text}<time>${message.time}</time>`;
+    const text = document.createTextNode(message.text);
+    const time = document.createElement("time");
+    time.textContent = message.time;
+    bubble.append(text, time);
     area.append(bubble);
   });
   area.scrollTop = area.scrollHeight;
